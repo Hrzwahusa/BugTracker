@@ -1,0 +1,10 @@
+D:\Coding\Projects\BugTracker\BugTracker\bin\Debug\BugTracker.exe.config
+D:\Coding\Projects\BugTracker\BugTracker\bin\Debug\BugTracker.exe
+D:\Coding\Projects\BugTracker\BugTracker\bin\Debug\BugTracker.pdb
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.csprojAssemblyReference.cache
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.LoginForm.resources
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.Properties.Resources.resources
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.csproj.GenerateResource.cache
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.csproj.CoreCompileInputs.cache
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.exe
+D:\Coding\Projects\BugTracker\BugTracker\obj\Debug\BugTracker.pdb

@@ -32,7 +32,7 @@
             this.username = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pass = new System.Windows.Forms.TextBox();
-            this.loginbutton = new System.Windows.Forms.Button();
+            this.Loginbutton = new System.Windows.Forms.Button();
             this.failedlabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -73,16 +73,16 @@
             this.pass.TabIndex = 3;
             this.pass.UseSystemPasswordChar = true;
             // 
-            // loginbutton
+            // Loginbutton
             // 
-            this.loginbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginbutton.Location = new System.Drawing.Point(340, 237);
-            this.loginbutton.Name = "loginbutton";
-            this.loginbutton.Size = new System.Drawing.Size(100, 34);
-            this.loginbutton.TabIndex = 4;
-            this.loginbutton.Text = "Login";
-            this.loginbutton.UseVisualStyleBackColor = true;
-            this.loginbutton.Click += new System.EventHandler(this.loginbutton_Click);
+            this.Loginbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Loginbutton.Location = new System.Drawing.Point(340, 237);
+            this.Loginbutton.Name = "Loginbutton";
+            this.Loginbutton.Size = new System.Drawing.Size(100, 34);
+            this.Loginbutton.TabIndex = 4;
+            this.Loginbutton.Text = "Login";
+            this.Loginbutton.UseVisualStyleBackColor = true;
+            this.Loginbutton.Click += new System.EventHandler(this.Loginbutton_Click);
             // 
             // failedlabel
             // 
@@ -100,7 +100,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.failedlabel);
-            this.Controls.Add(this.loginbutton);
+            this.Controls.Add(this.Loginbutton);
             this.Controls.Add(this.pass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.username);
@@ -118,7 +118,7 @@
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox pass;
-        private System.Windows.Forms.Button loginbutton;
+        private System.Windows.Forms.Button Loginbutton;
         private System.Windows.Forms.Label failedlabel;
     }
 }

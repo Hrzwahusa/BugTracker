@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
+
 
 namespace BugTracker
 {
@@ -16,10 +16,11 @@ namespace BugTracker
         public LoginForm()
         {
             InitializeComponent();
-        }       
-
+            
+        }        
         private void Loginbutton_Click(object sender, EventArgs e)
         {
+            
             //cleaning user input
             bool loginok = true;
             string user = username.Text.ToString();
@@ -37,38 +38,33 @@ namespace BugTracker
             }
 
             //password hash
-            password = StringtoSha256hash(password);
+            password = Hash.StringtoSha256hash(password);
 
             //execute login request
-            if(loginok) DBlogin(user,password);
+            if (loginok) ;
                        
         }
 
-        //login function
-        public void DBlogin(string user, string pass)
+        private void DBCon_Click(object sender, EventArgs e)
         {
-
-            Console.WriteLine(user);
-            Console.WriteLine(pass);
-
-        }
-
-        //hash function
-        static string StringtoSha256hash(string input)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
+            int counter = 0;
+            string line;
+            string[] connect = new string[4];
+            //Read file DBConnection.txt - unsecure must be stored otherwise
+            System.IO.StreamReader file = new System.IO.StreamReader(@"\Coding\Projects\BugTracker\BugTracker\DBConnection.txt");
+            while ((line = file.ReadLine()) != null)
             {
-                //string to bytearray - hashed
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-                //back to string
-                StringBuilder stringbuilder = new StringBuilder();
-                for(int i = 0; i < bytes.Length; i++)
-                {
-                    stringbuilder.Append(bytes[i].ToString("x2"));
-                }
-                return stringbuilder.ToString();
+                connect[counter] = line;
+                counter++;
             }
+
+            file.Close();
+            string dburl = connect[0];
+            string db = connect[1];
+            string dbuser = connect[2];
+            string dbpassword = connect[3];
+
+            DBlogin.Dblogin(dbuser, dbpassword, db, dburl);
         }
     }
 }

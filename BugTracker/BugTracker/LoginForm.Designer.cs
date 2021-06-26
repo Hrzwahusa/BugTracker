@@ -34,6 +34,7 @@
             this.pass = new System.Windows.Forms.TextBox();
             this.Loginbutton = new System.Windows.Forms.Button();
             this.failedlabel = new System.Windows.Forms.Label();
+            this.DBCon = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -94,11 +95,22 @@
             this.failedlabel.Text = "Login Failed";
             this.failedlabel.Visible = false;
             // 
+            // DBCon
+            // 
+            this.DBCon.Location = new System.Drawing.Point(638, 46);
+            this.DBCon.Name = "DBCon";
+            this.DBCon.Size = new System.Drawing.Size(75, 23);
+            this.DBCon.TabIndex = 6;
+            this.DBCon.Text = "ConnectDB";
+            this.DBCon.UseVisualStyleBackColor = true;
+            this.DBCon.Click += new System.EventHandler(this.DBCon_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DBCon);
             this.Controls.Add(this.failedlabel);
             this.Controls.Add(this.Loginbutton);
             this.Controls.Add(this.pass);
@@ -120,6 +132,7 @@
         private System.Windows.Forms.TextBox pass;
         private System.Windows.Forms.Button Loginbutton;
         private System.Windows.Forms.Label failedlabel;
+        private System.Windows.Forms.Button DBCon;
     }
 }
 

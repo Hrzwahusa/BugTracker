@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
+
 
 namespace BugTracker
 {
@@ -16,11 +17,12 @@ namespace BugTracker
         public LoginForm()
         {
             InitializeComponent();
-        }       
-
+        }        
         private void Loginbutton_Click(object sender, EventArgs e)
         {
+
             //cleaning user input
+            string rdrpass = "";
             bool loginok = true;
             string user = username.Text.ToString();
             string password = pass.Text.ToString();            
@@ -37,38 +39,28 @@ namespace BugTracker
             }
 
             //password hash
-            password = StringtoSha256hash(password);
+            password = Hash.StringtoSha256hash(password);
+            Console.WriteLine(password);
+                        
+            //db connection
+            DBlogin.Dblogin();
+
+            string sql = "SELECT Pass FROM User WHERE Name='"+user+"'";
+            MySqlCommand cmd = new MySqlCommand(sql, DBlogin.cnn);
+            object rdr = cmd.ExecuteScalar();
+            if(rdr != null)
+            {
+                rdrpass = rdr.ToString();
+            }
+           
 
             //execute login request
-            if(loginok) DBlogin(user,password);
-                       
-        }
-
-        //login function
-        public void DBlogin(string user, string pass)
-        {
-
-            Console.WriteLine(user);
-            Console.WriteLine(pass);
-
-        }
-
-        //hash function
-        static string StringtoSha256hash(string input)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
+            if (loginok && rdrpass == password)
             {
-                //string to bytearray - hashed
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-                //back to string
-                StringBuilder stringbuilder = new StringBuilder();
-                for(int i = 0; i < bytes.Length; i++)
-                {
-                    stringbuilder.Append(bytes[i].ToString("x2"));
-                }
-                return stringbuilder.ToString();
+                Console.WriteLine("success");
+                DBlogin.cnn.Close();
             }
-        }
+                       
+        }        
     }
 }

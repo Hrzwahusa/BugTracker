@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,12 +17,12 @@ namespace BugTracker
         public LoginForm()
         {
             InitializeComponent();
-            
         }        
         private void Loginbutton_Click(object sender, EventArgs e)
         {
-            
+
             //cleaning user input
+            string rdrpass = "";
             bool loginok = true;
             string user = username.Text.ToString();
             string password = pass.Text.ToString();            
@@ -39,32 +40,27 @@ namespace BugTracker
 
             //password hash
             password = Hash.StringtoSha256hash(password);
+            Console.WriteLine(password);
+                        
+            //db connection
+            DBlogin.Dblogin();
+
+            string sql = "SELECT Pass FROM User WHERE Name='"+user+"'";
+            MySqlCommand cmd = new MySqlCommand(sql, DBlogin.cnn);
+            object rdr = cmd.ExecuteScalar();
+            if(rdr != null)
+            {
+                rdrpass = rdr.ToString();
+            }
+           
 
             //execute login request
-            if (loginok) ;
-                       
-        }
-
-        private void DBCon_Click(object sender, EventArgs e)
-        {
-            int counter = 0;
-            string line;
-            string[] connect = new string[4];
-            //Read file DBConnection.txt - unsecure must be stored otherwise
-            System.IO.StreamReader file = new System.IO.StreamReader(@"\Coding\Projects\BugTracker\BugTracker\DBConnection.txt");
-            while ((line = file.ReadLine()) != null)
+            if (loginok && rdrpass == password)
             {
-                connect[counter] = line;
-                counter++;
+                Console.WriteLine("success");
+                DBlogin.cnn.Close();
             }
-
-            file.Close();
-            string dburl = connect[0];
-            string db = connect[1];
-            string dbuser = connect[2];
-            string dbpassword = connect[3];
-
-            DBlogin.Dblogin(dbuser, dbpassword, db, dburl);
-        }
+                       
+        }        
     }
 }
